@@ -1,0 +1,381 @@
+# To enable ProGuard in your project, edit project.properties
+# to define the proguard.config property as described in that file.
+#
+# Add project specific ProGuard rules here.
+# By default, the flags in this file are appended to flags specified
+# in ${sdk.dir}/tools/proguard/proguard-android.txt
+# You can edit the include path and order by changing the ProGuard
+# include property in project.properties.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# Add any project specific keep options here:
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+
+-optimizationpasses 5
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontpreverify
+-verbose
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+-keep public class com.android.vending.licensing.ILicensingService
+-keepclassmembers class * extends android.app.Activity {
+public void *(android.view.View);
+}
+
+-keepclasseswithmembernames class * {
+    native <methods>;
+ }
+-keep public class * extends android.view.View{
+*** get*();
+void set*(***);
+public <init>(android.content.Context);
+public <init>(android.content.Context,android,util.AttributeSet);
+public <init>(android.content.Context,android.util.AttributesSet,int);
+}
+
+
+-keepclassmembers enum * {
+public static **[] values();
+public static ** valueOf(java.lang.String);
+}
+
+-keep class * implements android.os.Parcelable {
+public static final android.os.Parcelable$Creator *;
+}
+-keepclassmembers class * implements java.io.Serializable{
+  static final long serialVersionUID;
+  private static final java.io.ObjectsStreamField[] serialPersistentFields;
+  private void writeObject(java.io.ObjectOutputStream);
+  private void readObject(java.io.ObjectInputStream);
+  java.lang.Object writeReplace(); 
+  java.lang.Object readResolve();
+}
+#实体类不能被混淆
+-keep public class com.mexuewang.mexue.model.**{
+*;
+}
+-keep public class com.mexuewang.mexue.model.evaluate.**{
+*;
+}
+-keep public class com.mexuewang.mexue.model.messsage.**{
+*;
+}
+-keep public class com.mexuewang.mexue.model.registration.**{
+*;
+}
+-keep public class com.mexuewang.mexue.model.growup.**{
+*;
+}
+
+-keep public class com.mexuewang.mexue.model.settiing.**{
+*;
+}
+-keep public class com.mexuewang.mexue.model.sports.**{
+*;
+}
+-keep public class com.mexuewang.mexue.model.user.**{
+*;
+}
+
+-keep public class com.mexuewang.mexue.vollbean.**{
+*;
+}
+-keep public class com.mexuewang.mexue.widge.calendar.**{
+*;
+}
+-keep public class com.mexuewang.mexue.adapter.**{
+*;
+}
+-keep public class com.mexuewang.xhuanxin.model.**{
+*;
+}
+-keep public class com.mexuewang.xhuanxin.domain.**{
+*;
+}
+-keep public class com.mexuewang.xhuanxin.widge.photoview.**{
+*;
+}
+-keep public class com.mexuewang.xhuanxin.widge.dialog.**{
+*;
+}
+-keep public class com.mexuewang.sdk.model.**{
+*;
+}
+-keep public class com.mexuewang.mexue.sendQueue.**{
+*;
+}
+-keep public class com.mexuewang.mexue.model.sendData.**{
+*;
+}
+
+
+#webview
+-keepclassmembers class fqcn.of.javascript.interface.for.webview
+ {
+   public *;
+}
+-keepclassmembers class * extends android.webkit.WebViewClient{
+ public void *(android.webkit.WebView,java.lang.String,android.graphics.Bitmap);
+ public boolean * (android.webkit.webView,java.lang.String);
+}
+-keepclassmembers class * extends android.webkit.WebChromeClient{
+ public void * (android.webkit.WebView,java.lang.String,android.graphics.Bitmap);
+ public boolean *(android.webkit.webView,java.lang.String);
+}
+-keep public class android.net.http.SslError{
+     *;
+}
+-keep public class android.webkit.WebViewClient{
+    *;
+}
+-keep public class android.webkit.WebChromeClient{
+    *;
+}
+-keep public interface android.webkit.WebChromeClient$CustomViewCallback {
+    *;
+}
+-keep public interface android.webkit.ValueCallback {
+    *;
+}
+-keep class * implements android.webkit.WebChromeClient {
+    *;
+}
+-keepattributes *Annotation*
+-keepattributes *JavascriptInterface*
+-keep public class com.mexuewang.sdk.webview.**{
+*;
+}
+-keep public class com.mexuewang.mexue.activity.setting.MexueCommunityWebview{
+*;
+}
+-keep public class com.mexuewang.mexue.activity.setting.MexueCommunityWebview$MyJSListener{
+*;
+}
+-keep public class com.mexuewang.mexue.activity.setting.StudentGrowRecordActivity{
+*;
+}
+-keep public class com.mexuewang.mexue.activity.setting.StudentGrowRecordActivity$MyJSListener{
+*;
+}
+-keep public class com.mexuewang.mexue.activity.message.ActivePushActivity{
+*;
+}
+-keep public class com.mexuewang.mexue.activity.message.ActivePushActivity$MyJSListener{
+*;
+}
+
+
+-keep class **.R$* {*;}
+-keep class com.mexuewang.sdk.R$*{*;}
+#过滤泛型
+-keepattributes Signature
+#额外产生的错误
+-keep class com.mixpanel.android.R$*{
+*;}
+-keep class  com.mixpanel.android.R$*{
+*;}
+-keep class  com.google.android.gms.R$*{
+*;}
+
+-keep class com.squareup.okhttp.**
+-keep class me.maxwin.R$*{
+*;}
+#依赖的工程
+-keep class com.android.volley.utils.*{
+*;}
+-keep class com.android.http.*{*;}
+-keep class com.android.http.zbean.*{
+*;}
+-keep class com.android.volley.*{
+*;}
+-keep class com.android.volley.toolbox.*{
+*;}
+
+-keep class com.mixpanel.android.**{
+*;
+}
+-keep class com.google.android.gms.**{
+*;}
+-keep class com.squareup.picasso.**{
+*;}
+-keep class com.umeng.fb.**{
+*;}
+-keep class me.maxwin.view.**{
+*;}
+
+
+
+
+-keepclassmembers class com.umeng.fb.widget.InterceptTouchSwipeRefreshLayout{
+  void setRefreshing(boolean);
+  void setOnRefreshListener(android.support.v4.widget.SwipeRefreshLayout$OnRefreshListener);
+  void setColorSchemeResources(int[]);
+}
+-dontwarn com.umeng.fb.widget.InterceptTouchSwipeRefreshLayout
+-keep class  com.mexuewang.mexue.widge.dialog.CommentDialog$*{
+*;}
+
+#引入support-v4
+-keep class * extends android.support.v4.app.FragmentActivity{
+*;}
+
+
+#反射的部分
+-keep public class com.nostra13.universalimageloader.core.imageaware.**{
+*;}
+-keep public class com.nostra13.universalimageloader.core.**{
+*;}
+-keep public class com.mexuewang.mexue.view.ShowImageViewAware{
+*;}
+-keep public class com.mexuewang.mexue.view.SmallAvatarImageViewAware{
+*;}
+-keep public class com.mexuewang.mexue.util.service.**{
+*;}
+
+
+
+
+-dontwarn com.nostra13.universalimageloader.**
+
+
+
+#友盟
+-libraryjars libs/com.umeng.fb.5.3.0.jar
+-libraryjars libs/umeng-analytics-v5.5.3.jar
+-keepclassmembers class * {
+   public <init>(org.json.JSONObject);
+}
+-keep public class com.mexuewang.mexue.R$*{
+public static final int *;
+}
+#保证友盟统计有源文件和行号的信息了
+-keepattributes SourceFile,LineNumberTable
+
+#环信
+-libraryjars libs/easemobchat_2.2.9.jar
+-keep class com.easemob.** {*;}
+-keep class org.jivesoftware.** {*;}
+-keep class org.apache.** {*;}
+-dontwarn  com.easemob.**
+#另外，demo中发送表情的时候使用到反射，需要keep SmileUtils,注意前面的包名，
+#不要SmileUtils复制到自己的项目下keep的时候还是写的demo里的包名
+-keep class com.mexuewang.xhuanxin.utils.SmileUtils {*;}
+#2.0.9后加入语音通话功能，如需使用此功能的api，加入以下keep
+-dontwarn ch.imvs.**
+-dontwarn org.slf4j.**
+-keep class org.ice4j.** {*;}
+-keep class net.java.sip.** {*;}
+-keep class org.webrtc.voiceengine.** {*;}
+-keep class org.bitlet.** {*;}
+-keep class org.slf4j.** {*;}
+-keep class ch.imvs.** {*;}
+
+#gson
+-libraryjars libs/gson-2.2.4.jar
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.stream.*{ *; }
+-keep class com.google.gson.examples.android.model.* { *; }
+-keep class com.google.gson.**{ *;}
+-keep class com.google.gson.reflect.*{ *;}
+
+
+#support-v4
+#-libraryjars libs/android-support-v4.jar
+#-dontwarn android.support.v4.**
+#-keep class android.support.v4.** { *; }
+#-keep class android.support.v4.app.R$*{*;}
+-keep class * extends java.lang.annotation.Annotation { *; }
+
+
+#to do picasso
+-libraryjars libs/picasso-2.4.0.jar
+-dontwarn com.squareup.okhttp.**
+
+#信鸽
+-libraryjars libs/Xg_sdk_v2.46_20160602_1638.jar
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep class com.tencent.android.tpush.**{*;}
+-keep class com.tencent.mid.**{*;}
+-libraryjars libs/wup-1.0.0.E-SNAPSHOT.jar
+-libraryjars libs/jg_filter_sdk_1.1.jar
+#阿里云服务
+-dontwarn okio.**
+-dontwarn org.apache.commons.codec.binary.**
+-dontwarn com.alibaba.sdk.android.oss.**
+
+#其他错误
+-keep class com.qq.taf.jce.**{
+*;}
+-dontwarn com.qq.taf.jce.**
+-keep class com.jg.**{*;}
+-dontwarn com.jg.**
+-dontwarn com.tencent.mid.**
+-dontwarn com.mixpanel.android.R$*
+-dontwarn com.mixpanel.android.R
+-dontwarn com.google.android.gms.R$*
+-dontwarn com.google.android.gms.R
+
+-dontwarn com.squareup.okhttp.**
+-dontwarn com.umeng.message.**
+-dontwarn me.maxwin.R$*
+-dontwarn me.maxwin.R
+
+#分享部分
+#微信
+-keep class com.tencent.mm.sdk.** {
+   *;
+}
+#qq
+#-libraryjars libs/open_sdk_r5509.jar
+#-dontwarn com.tencent.**
+#-keep class com.tencent.** {*;}
+
+#sina
+#-dontwarn com.weibo.sdk.Android.WeiboDialog
+#-dontwarn android.net.http.SslError
+#-dontwarn android.webkit.WebViewClient
+
+#2.9新需求引入包
+-libraryjars libs/alipaySdk-20160223.jar
+#-libraryjars libs/libammsdk.jar
+#-libraryjars libs/mta-sdk-1.6.2.jar
+#-libraryjars libs/weibosdkcore_release.jar
+-keep class com.alipay.android.app.IAlixPay{*;}
+-keep class com.alipay.android.app.IAlixPay$Stub{*;}
+-keep class com.alipay.android.app.IRemoteServiceCallback{*;}
+-keep class com.alipay.android.app.IRemoteServiceCallback$Stub{*;}
+-keep class com.alipay.sdk.app.PayTask{ public *;}
+-keep class com.alipay.sdk.app.AuthTask{ public *;}
+
+#删除log代码
+-assumenosideeffects
+class android.util.Log
+ {
+    public static ***
+ e(...);
+    public static ***
+ w(...);
+    public static ***
+ wtf(...);
+    public static ***
+ d(...);
+    public static ***
+ v(...);
+}
