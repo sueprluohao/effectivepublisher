@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+body{ margin:0; padding:0; font-size:14px;}
+*{ margin:0; padding:0;}
+ul,li{margin:0; padding:0; list-style:none;}
+.content{ padding: 32px;}
+.content p{ line-height:22px; margin-top:2px;}
+.title{ margin:30px 0;}
+.title1{ margin:2px 0;}
+.content ul li{ margin-top:14px;}
