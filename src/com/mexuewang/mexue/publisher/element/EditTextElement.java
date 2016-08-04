@@ -2,7 +2,8 @@ package com.mexuewang.mexue.publisher.element;
 
 import android.content.Context;
 
-import com.mexuewang.mexue.model.sendData.GrowthData;
+import com.mexuewang.mexue.publisher.entity.Accessory;
+import com.mexuewang.mexue.publisher.entity.EditTextAccessory;
 
 
 
@@ -11,6 +12,7 @@ import com.mexuewang.mexue.model.sendData.GrowthData;
  * function:specific business logic releated to component of editText 
  */
 public class EditTextElement extends BasePublisherElement {
+	private EditTextAccessory mEditTextAccessory;
 	@Override
 	public void init(Context context) {
 		super.init(context);
@@ -36,8 +38,16 @@ public class EditTextElement extends BasePublisherElement {
 		
 	}
 	public void setContent(String content){
-		GrowthData growthData=getmGrowthData();
-		growthData.setContent(content);
+	   if (null==mEditTextAccessory){
+		   mEditTextAccessory=new EditTextAccessory(); 
+	   }
+	   mEditTextAccessory.setContent(content);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends Accessory> T getAccessary() {
+		return (T) mEditTextAccessory;
+	}
+    
 }

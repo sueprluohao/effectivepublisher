@@ -1,5 +1,7 @@
 package com.mexuewang.mexue.publisher.element;
 
+import com.mexuewang.mexue.publisher.entity.Accessory;
+
 import android.content.Context;
 
 
@@ -31,5 +33,10 @@ public class LabelElement extends BasePublisherElement {
 	@Override
 	public void remove() {
 		
+	}
+
+	@Override
+	public <T extends Accessory> T getAccessary() {
+		return null;
 	}
 }

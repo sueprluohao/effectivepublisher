@@ -12,10 +12,11 @@ import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.mexuewang.mexue.model.growup.FindGrowthInfo;
 import com.mexuewang.mexue.model.growup.GrowthInfo;
-import com.mexuewang.mexue.model.sendData.GrowthData;
 import com.mexuewang.mexue.model.user.UserInfoItem;
 import com.mexuewang.mexue.model.user.UserInformation;
 import com.mexuewang.mexue.publisher.PublisherConstants;
+import com.mexuewang.mexue.publisher.entity.Accessory;
+import com.mexuewang.mexue.publisher.entity.PublisherScopeAccessory;
 import com.mexuewang.mexue.util.ConstulInfo;
 import com.mexuewang.mexue.vollbean.RequestMapChild;
 import com.mexuewang.mexue.vollbean.TokUseriChSingle;
@@ -29,6 +30,7 @@ public class PublishScopeElement extends BasePublisherElement {
 
 	private List<GrowthInfo> mList=new ArrayList<GrowthInfo>();
 	private FindGrowthInfo mFindGrowthInfo;
+	private PublisherScopeAccessory mPublisherScopeAccessory;
 	public FindGrowthInfo getmFindGrowthInfo() {
 		return this.mFindGrowthInfo;
 	}
@@ -58,23 +60,22 @@ public class PublishScopeElement extends BasePublisherElement {
 		
 	}
     public void update(String name){
-    	GrowthData growthData=super.getmGrowthData();
-    	if (null==growthData){
-    		return;
+    	if (mPublisherScopeAccessory==null){
+    		mPublisherScopeAccessory=new PublisherScopeAccessory();
     	}
-    	growthData.setClassIds(getClassInfo());
+    	mPublisherScopeAccessory.setClassIds(getClassInfo());
     	if ("我的班级".equals(name)) {
-    		growthData.setIsPrivate("0");
-    		growthData.setMedalType(null);
+    		mPublisherScopeAccessory.setIsPrivate("0");
+    		mPublisherScopeAccessory.setMedalType(null);
 		} else if ("私密".equals(name)) {
-			growthData.setIsPrivate("1");
-			growthData.setMedalType(null);
+			mPublisherScopeAccessory.setIsPrivate("1");
+			mPublisherScopeAccessory.setMedalType(null);
 		} else if ("我的年级".equals(name)) {
-			growthData.setIsPrivate("0");
-    		growthData.setMedalType("1");
+			mPublisherScopeAccessory.setIsPrivate("0");
+			mPublisherScopeAccessory.setMedalType("1");
 		} else if ("我的校园".equals(name)) {
-			growthData.setIsPrivate("0");
-    		growthData.setMedalType("2");
+			mPublisherScopeAccessory.setIsPrivate("0");
+			mPublisherScopeAccessory.setMedalType("2");
 		}
     }
 	/* 
@@ -145,5 +146,10 @@ public class PublishScopeElement extends BasePublisherElement {
 			}
 		}
 		return classId;
+	}
+	@Override
+	public <T extends Accessory> T getAccessary() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

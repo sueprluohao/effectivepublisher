@@ -10,7 +10,6 @@ import com.android.http.RequestManager;
 import com.android.http.RequestManager.RequestListener;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import com.mexuewang.mexue.model.sendData.GrowthData;
 import com.mexuewang.mexue.publisher.listener.ElementEventListener;
 import com.mexuewang.mexue.util.JsonValidator;
 
@@ -20,7 +19,6 @@ import com.mexuewang.mexue.util.JsonValidator;
  * 
  */
 public abstract class BasePublisherElement implements PublisherElement {
-	private GrowthData mGrowthData;
 	protected RequestManager mRquestManager;
 	protected ElementEventListener mElementEventListener;
 	protected PublisherRequestListener mPublisherRequestListener = new PublisherRequestListener();
@@ -33,13 +31,6 @@ public abstract class BasePublisherElement implements PublisherElement {
 		}
 	}
 
-	public GrowthData getmGrowthData() {
-		return mGrowthData;
-	}
-
-	public void setmGrowthData(GrowthData mGrowthData) {
-		this.mGrowthData = mGrowthData;
-	}
 
 	/**
      * 
@@ -125,4 +116,5 @@ public abstract class BasePublisherElement implements PublisherElement {
 	protected void responseError() {
 
 	}
+	
 }

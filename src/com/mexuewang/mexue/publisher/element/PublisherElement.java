@@ -2,6 +2,7 @@ package com.mexuewang.mexue.publisher.element;
 
 import android.content.Context;
 
+import com.mexuewang.mexue.publisher.entity.Accessory;
 import com.mexuewang.mexue.publisher.listener.ElementEventListener;
 
 /**
@@ -9,6 +10,10 @@ import com.mexuewang.mexue.publisher.listener.ElementEventListener;
  * 
  */
 public interface PublisherElement {
+	/**
+     * funtion:it is invoked before sending draft,and to be a final entity
+     */
+    public <T extends Accessory> T getAccessary();
 	/**
 	 * 
 	 */
@@ -25,12 +30,7 @@ public interface PublisherElement {
      * 
      */
     public void update();
-    /**
-     * @param bundle
-     */
-    /**
-     * aaaaaa
-     */
+
     public void remove();
     
     public void addElementEventListener(Context context,ElementEventListener elementEventListener);
